@@ -5,7 +5,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-public class Cliente implements Comparable<Cliente>,Serializable{
+public class Cliente implements Comparable<Cliente>, Serializable {
+
     private String nombre;
     private String dni;
     private LocalDate fechaNacimiento;
@@ -16,7 +17,7 @@ public class Cliente implements Comparable<Cliente>,Serializable{
         this.dni = dni;
         DateTimeFormatter formatoFechas
                 = DateTimeFormatter.ofPattern("yyyy-mm-dd");
-        this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formatoFechas);       
+        this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formatoFechas);
         this.apellidos = apellidos;
     }
 
