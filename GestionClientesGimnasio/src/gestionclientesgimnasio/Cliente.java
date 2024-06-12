@@ -4,20 +4,24 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
-public class Cliente implements Comparable<Cliente>,Serializable{
+public class Cliente implements Comparable<Cliente>, Serializable {
+
     private String nombre;
     private String dni;
     private LocalDate fechaNacimiento;
     private String apellidos;
+    private Date fechaAlta;
 
-    public Cliente(String nombre, String dni, String fechaNacimiento, String apellidos) {
+    public Cliente(String nombre, String dni, String fechaNacimiento, String apellidos, Date fechaAlta) {
         this.nombre = nombre;
         this.dni = dni;
         DateTimeFormatter formatoFechas
                 = DateTimeFormatter.ofPattern("yyyy-mm-dd");
-        this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formatoFechas);       
+        this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formatoFechas);
         this.apellidos = apellidos;
+        this.fechaAlta = fechaAlta;
     }
 
     int edad() {
@@ -69,5 +73,13 @@ public class Cliente implements Comparable<Cliente>,Serializable{
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public Date getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(Date fechaAlta) {
+        this.fechaAlta = fechaAlta;
     }
 }
