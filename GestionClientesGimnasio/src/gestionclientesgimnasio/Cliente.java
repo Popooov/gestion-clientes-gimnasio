@@ -18,7 +18,7 @@ public class Cliente implements Comparable<Cliente>, Serializable {
         this.nombre = nombre;
         this.dni = dni;
         DateTimeFormatter formatoFechas
-                = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+                = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formatoFechas);
         this.apellidos = apellidos;
         this.fechaAlta = fechaAlta;
