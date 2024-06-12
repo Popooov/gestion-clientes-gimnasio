@@ -40,7 +40,9 @@ public class Cliente implements Comparable<Cliente>, Serializable {
 
     @Override
     public String toString() {
-        return "DNI: " + getDni() + " Nombre: " + getNombre() + " Edad: " + edad() + "\n";
+        return "Cliente -> " + "nombre=" + getNombre() + ", dni=" + getDni()
+                + ", fechaNacimiento=" + getFechaNacimiento() + ", apellidos=" + getApellidos()
+                + ", fechaAlta=" + getFechaAlta() + ", edad=" + edad() + "\n";
     }
 
     public String getNombre() {
