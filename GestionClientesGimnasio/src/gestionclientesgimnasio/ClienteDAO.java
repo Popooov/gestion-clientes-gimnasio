@@ -23,8 +23,6 @@ public class ClienteDAO {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             Class.forName(DRIVER);
             System.out.println("Estás conectado");
-
-            conn.close();
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -32,7 +30,7 @@ public class ClienteDAO {
         return conn;
     }
 
-    public void create(Cliente cliente) {
+    public boolean create(Cliente cliente) {
         if (cliente != null) {
             if (read(cliente.getDni()) == null) {
                 String sql = "insert into clientes values (?, ?, ?, ?, ?)";
@@ -44,13 +42,16 @@ public class ClienteDAO {
                     smt.setDate(4, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
                     smt.setDate(5, cliente.getFechaAlta());
                     smt.executeUpdate();
+                    return true;
                 } catch (SQLException e) {
                     System.out.println("Error " + e.getMessage());
                 }
             } else {
                 System.out.println("El cliente existe");
+                return false;
             }
         }
+        return false;
     }
 
     public Cliente read(String dniCliente) {
