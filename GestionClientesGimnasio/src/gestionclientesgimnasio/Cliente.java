@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
+import java.sql.Date;
 
 public class Cliente implements Comparable<Cliente>, Serializable {
 
@@ -14,14 +14,14 @@ public class Cliente implements Comparable<Cliente>, Serializable {
     private String apellidos;
     private Date fechaAlta;
 
-    public Cliente(String nombre, String dni, String fechaNacimiento, String apellidos, Date fechaAlta) {
+    public Cliente(String nombre, String dni, String fechaNacimiento, String apellidos) {
         this.nombre = nombre;
         this.dni = dni;
         DateTimeFormatter formatoFechas
                 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formatoFechas);
         this.apellidos = apellidos;
-        this.fechaAlta = fechaAlta;
+        this.fechaAlta = Date.valueOf(LocalDate.now());
     }
 
     int edad() {

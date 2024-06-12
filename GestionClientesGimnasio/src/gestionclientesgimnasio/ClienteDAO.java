@@ -1,6 +1,8 @@
 package gestionclientesgimnasio;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ClienteDAO {
 
@@ -33,13 +35,14 @@ public class ClienteDAO {
     public void create(Cliente cliente) {
         if (cliente != null) {
             if (read(cliente.getDni()) == null) {
-                String sql = "insert into clientes values (?, ?, ?, ?)";
+                String sql = "insert into clientes values (?, ?, ?, ?, ?)";
                 try {
                     PreparedStatement smt = conexion.prepareStatement(sql);
-                    smt.setString(1, cliente.getNombre());
-                    smt.setString(2, cliente.getDni());
-                    smt.setDate(3, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
-                    smt.setString(4, cliente.getApellidos());
+                    smt.setString(1, cliente.getDni());
+                    smt.setString(2, cliente.getNombre());
+                    smt.setString(3, cliente.getApellidos());
+                    smt.setDate(4, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
+                    smt.setDate(5, cliente.getFechaAlta());
                     smt.executeUpdate();
                 } catch (SQLException e) {
                     System.out.println("Error " + e.getMessage());
@@ -68,22 +71,41 @@ public class ClienteDAO {
         } catch (SQLException e) {
             System.out.println("Error " + e.getMessage());
         }
-        
+
         return cliente;
     }
-    
+
+    public List<Cliente> showAll() {
+        List<Cliente> list = new LinkedList<>();
+        String sql = "Select * from clientes";
+        try {
+            Statement smt = conexion.createStatement();
+            ResultSet rs = smt.executeQuery(sql);
+            while (rs.next()) {
+                String dni = rs.getString("dni");
+                String nombre = rs.getString("nombre");
+                String apellidos = rs.getString("apellidos");
+                String fnac = rs.getString("fechaNacimiento");
+                Cliente cliente = new Cliente(nombre, dni, fnac, apellidos);
+                list.add(cliente);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error " + e.getMessage());
+        }
+
+        return list;
+    }
+
     public void update(Cliente cliente) {
         if (cliente != null) {
             if (read(cliente.getDni()) != null) {
-                String sql = "update clientes set dni = ?, nombre = ?, apellidos = ?, fechaNacimiento = ?";
-
+                String sql = "update clientes set nombre = ?, apellidos = ?, fechaNacimiento = ? where dni = ?";
                 try {
                     PreparedStatement smt = conexion.prepareStatement(sql);
-                    smt.setString(1, cliente.getDni());
-                    smt.setString(2, cliente.getNombre());
-                    smt.setString(3, cliente.getApellidos());
-                    smt.setDate(4, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
-
+                    smt.setString(1, cliente.getNombre());
+                    smt.setString(2, cliente.getApellidos());
+                    smt.setDate(3, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
+                    smt.setString(4, cliente.getDni());
                     smt.executeUpdate();
                 } catch (SQLException e) {
                     System.out.println("Error " + e.getMessage());
@@ -96,7 +118,6 @@ public class ClienteDAO {
 
     public Cliente delete(String dni) {
         Cliente cliente = read(dni);
-
         if (cliente != null) {
             try {
                 String sql = "Delete from clientes where dni = ?";
@@ -106,7 +127,6 @@ public class ClienteDAO {
             } catch (SQLException e) {
                 System.out.println("Error " + e.getMessage());
             }
-
         } else {
             System.out.println("El cliente no existe");
         }
