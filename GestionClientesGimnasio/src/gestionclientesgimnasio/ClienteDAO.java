@@ -36,11 +36,10 @@ public class ClienteDAO {
                 String sql = "insert into clientes values (?, ?, ?, ?)";
                 try {
                     PreparedStatement smt = conexion.prepareStatement(sql);
-                    smt.setString(1, cliente.getDni());
-                    smt.setString(2, cliente.getNombre());
-                    smt.setString(3, cliente.getApellidos());
-                    smt.setDate(4, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
-                    
+                    smt.setString(1, cliente.getNombre());
+                    smt.setString(2, cliente.getDni());
+                    smt.setDate(3, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
+                    smt.setString(4, cliente.getApellidos());
                     smt.executeUpdate();
                 } catch (SQLException e) {
                     System.out.println("Error " + e.getMessage());
