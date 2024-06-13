@@ -101,7 +101,7 @@ public class ClienteDAO {
         return list;
     }
 
-    public void update(Cliente cliente) {
+    public boolean update(Cliente cliente) {
         if (cliente != null) {
             if (read(cliente.getDni()) != null) {
                 String sql = "update clientes set nombre = ?, apellidos = ?, fechaNacimiento = ? where dni = ?";
@@ -112,13 +112,17 @@ public class ClienteDAO {
                     smt.setDate(3, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
                     smt.setString(4, cliente.getDni());
                     smt.executeUpdate();
+                
+                return true;
                 } catch (SQLException e) {
                     System.out.println("Error " + e.getMessage());
+                return false;
                 }
             } else {
                 System.out.println("El cliente no existe");
             }
         }
+        return true;
     }
 
     public Cliente delete(String dni) {

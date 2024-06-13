@@ -6,10 +6,7 @@ package vistas;
 
 import gestionclientesgimnasio.Cliente;
 import gestionclientesgimnasio.ClienteDAO;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
-import java.sql.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +19,9 @@ public class menu extends javax.swing.JFrame {
     /**
      * Creates new form create
      */
+    Cliente modelo;
+    ClienteDAO dao = new ClienteDAO();
+    
     public menu() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -31,14 +31,14 @@ public class menu extends javax.swing.JFrame {
 
     public void cargarClientes() {
         String[] columnNames = {"Dni", "Nombre", "Apellidos", "Fecha Nacimiento", "Fecha Alta"};
-        DefaultTableModel modelo = new DefaultTableModel(null, columnNames) {
+        DefaultTableModel model = new DefaultTableModel(null, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
 
         };
-        ClienteDAO dao = new ClienteDAO();
+        
         List<Cliente> listaCliente = dao.showAll();
         for (Cliente clie : listaCliente) {
             Object[] data = new Object[columnNames.length];
@@ -47,9 +47,9 @@ public class menu extends javax.swing.JFrame {
             data[2] = clie.getApellidos();
             data[3] = clie.getFechaNacimiento();
             data[4] = clie.getFechaAlta();
-            modelo.addRow(data);
+            model.addRow(data);
         }
-        jtClientes.setModel(modelo);
+        jtClientes.setModel(model);
     }
 
     /**
@@ -74,6 +74,8 @@ public class menu extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         lblTitulo1 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtClientes = new javax.swing.JTable();
@@ -83,56 +85,55 @@ public class menu extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("NOMBRE");
         jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("APELLIDOS");
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("DNI");
         jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("FECHA NACIMIENTO");
         jLabel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
-        txtDni.setBackground(new java.awt.Color(255, 255, 255));
         txtDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDniActionPerformed(evt);
             }
         });
 
-        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
             }
         });
 
-        txtFechaNac.setBackground(new java.awt.Color(255, 255, 255));
         txtFechaNac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaNacActionPerformed(evt);
             }
         });
 
-        txtApellidos.setBackground(new java.awt.Color(255, 255, 255));
         txtApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidosActionPerformed(evt);
@@ -158,12 +159,25 @@ public class menu extends javax.swing.JFrame {
 
         btnExit.setBackground(new java.awt.Color(255, 51, 51));
         btnExit.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
-        btnExit.setIcon(new javax.swing.ImageIcon("D:\\1ºDAW\\PRO\\gestion-clientes-gimnasio\\GestionClientesGimnasio\\src\\imagenes\\logout.png")); // NOI18N
         btnExit.setText("Exit");
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
             }
         });
 
@@ -185,13 +199,18 @@ public class menu extends javax.swing.JFrame {
                                 .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                             .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(54, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(btnRegistrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addComponent(btnExit)
-                        .addGap(19, 19, 19))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnRegistrar)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnExit))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnActualizar)
+                                .addGap(42, 42, 42)
+                                .addComponent(btnBorrar)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
@@ -202,26 +221,30 @@ public class menu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnExit))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnBorrar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
@@ -262,7 +285,7 @@ public class menu extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,7 +308,7 @@ public class menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(70, Short.MAX_VALUE))
         );
@@ -339,14 +362,12 @@ public class menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean validar = validacionCampos();
         if (validar == true) {
-            ClienteDAO dao = new ClienteDAO();
-            DateTimeFormatter formatoFechas
-                    = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            Cliente modelo = new Cliente(txtNombre.getText(), txtDni.getText(),
+            modelo = new Cliente(txtNombre.getText(), txtDni.getText(),
                     txtFechaNac.getText(), txtApellidos.getText());
             boolean respuesta = dao.create(modelo);
             if (respuesta) {
                 JOptionPane.showMessageDialog(null, "Se registro corectamente el cliente -> " + modelo.getNombre(), "Exito", JOptionPane.INFORMATION_MESSAGE);
+                cargarClientes();
                 limpiarCampos();
             } else {
                 JOptionPane.showMessageDialog(null, "No se registro corectamente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -390,6 +411,34 @@ public class menu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        boolean validar = validacionCampos();
+        if (validar == true) {
+            modelo = new Cliente(txtNombre.getText(), txtDni.getText(),
+                    txtFechaNac.getText(), txtApellidos.getText());
+            boolean respuesta = dao.update(modelo);
+            if (respuesta) {
+                JOptionPane.showMessageDialog(null, "Se actualizo corectamente el cliente -> " + modelo.getNombre(), "Exito", JOptionPane.INFORMATION_MESSAGE);
+                cargarClientes();
+                limpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se actualizo corectamente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+        if (txtDni.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Complete el campo dni", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else {
+            modelo = dao.delete(txtDni.getText());
+            JOptionPane.showMessageDialog(null, "Se borro corectamente el cliente -> " + modelo.getNombre(), "Exito", JOptionPane.INFORMATION_MESSAGE);
+            cargarClientes();
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -427,6 +476,8 @@ public class menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel2;
