@@ -89,28 +89,28 @@ public class menu extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("NOMBRE");
         jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("APELLIDOS");
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("DNI");
         jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("FECHA NACIMIENTO");
@@ -140,7 +140,7 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrar.setBackground(new java.awt.Color(0, 102, 102));
+        btnRegistrar.setBackground(new java.awt.Color(204, 255, 204));
         btnRegistrar.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/add-user.png"))); // NOI18N
         btnRegistrar.setText("Registrar");
@@ -157,8 +157,9 @@ public class menu extends javax.swing.JFrame {
         lblTitulo1.setText("FORMULARIO");
         lblTitulo1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnExit.setBackground(new java.awt.Color(255, 51, 51));
+        btnExit.setBackground(new java.awt.Color(153, 153, 255));
         btnExit.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon("D:\\1ºDAW\\PRO\\gestion-clientes-gimnasio\\GestionClientesGimnasio\\src\\imagenes\\logout.png")); // NOI18N
         btnExit.setText("Exit");
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +168,8 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        btnActualizar.setBackground(new java.awt.Color(153, 255, 255));
+        btnActualizar.setIcon(new javax.swing.ImageIcon("D:\\1ºDAW\\PRO\\gestion-clientes-gimnasio\\GestionClientesGimnasio\\src\\imagenes\\changes.png")); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +177,8 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        btnBorrar.setBackground(new java.awt.Color(255, 51, 51));
+        btnBorrar.setIcon(new javax.swing.ImageIcon("D:\\1ºDAW\\PRO\\gestion-clientes-gimnasio\\GestionClientesGimnasio\\src\\imagenes\\delete.png")); // NOI18N
         btnBorrar.setText("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,16 +206,14 @@ public class menu extends javax.swing.JFrame {
                             .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(54, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnRegistrar)
-                                .addGap(31, 31, 31)
-                                .addComponent(btnExit))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnActualizar)
-                                .addGap(42, 42, 42)
-                                .addComponent(btnBorrar)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 26, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
@@ -252,10 +255,10 @@ public class menu extends javax.swing.JFrame {
                     .addContainerGap(416, Short.MAX_VALUE)))
         );
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jtClientes.setBackground(new java.awt.Color(102, 102, 255));
+        jtClientes.setBackground(new java.awt.Color(255, 204, 204));
         jtClientes.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         jtClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -269,7 +272,7 @@ public class menu extends javax.swing.JFrame {
             }
         ));
         jtClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jtClientes.setGridColor(new java.awt.Color(153, 153, 153));
+        jtClientes.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(jtClientes);
 
         lblTitulo.setFont(new java.awt.Font("Liberation Serif", 2, 18)); // NOI18N
@@ -283,22 +286,22 @@ public class menu extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(229, 229, 229)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(242, 242, 242))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(291, 291, 291))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
