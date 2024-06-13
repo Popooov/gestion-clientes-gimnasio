@@ -24,8 +24,6 @@ public class Cliente implements Comparable<Cliente>, Serializable {
         this.fechaAlta = Date.valueOf(LocalDate.now());
     }
 
-    public Cliente() {
-    }
     
 
     int edad() {

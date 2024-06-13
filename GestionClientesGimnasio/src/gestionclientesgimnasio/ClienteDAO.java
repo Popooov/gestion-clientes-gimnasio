@@ -3,6 +3,8 @@ package gestionclientesgimnasio;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClienteDAO {
 
@@ -10,7 +12,7 @@ public class ClienteDAO {
     final String URL = "jdbc:mysql://localhost:3306/gimnasio";
     final String USER = "root";
     final String PASSWORD = "";
-    final String DRIVER = "com.mysql.jc.jdbc.Driver";
+    final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
     public ClienteDAO() {
         this.conexion = conectar();
@@ -20,13 +22,15 @@ public class ClienteDAO {
         Connection conn = null;
 
         try {
-            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+
+            conn =(Connection) DriverManager.getConnection(URL, USER, PASSWORD);
             Class.forName(DRIVER);
-            System.out.println("Estás conectado");
+
+            System.out.println("Conexión establecida.");
+
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
         return conn;
     }
 
