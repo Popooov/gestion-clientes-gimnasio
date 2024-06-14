@@ -23,7 +23,7 @@ public class ClienteDAO {
 
         try {
 
-            conn =(Connection) DriverManager.getConnection(URL, USER, PASSWORD);
+            conn = (Connection) DriverManager.getConnection(URL, USER, PASSWORD);
             Class.forName(DRIVER);
 
             System.out.println("Conexión establecida.");
@@ -112,11 +112,11 @@ public class ClienteDAO {
                     smt.setDate(3, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
                     smt.setString(4, cliente.getDni());
                     smt.executeUpdate();
-                
-                return true;
+
+                    return true;
                 } catch (SQLException e) {
                     System.out.println("Error " + e.getMessage());
-                return false;
+                    return false;
                 }
             } else {
                 System.out.println("El cliente no existe");
